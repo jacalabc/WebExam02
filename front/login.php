@@ -33,9 +33,11 @@
             pw:$("#pw").val()
         }
         $.post("./api/chk_acc.php",user,(result)=>{
+            console.log(result);
             if(parseInt(result)===1){
                 // 有此帳號
                 $.post("./api/chk_pw.php",user,(result)=>{
+                    console.log(result);
                     if(parseInt(result)===1){
                         // 帳密正確
                         if(user.acc==='admin'){
@@ -46,11 +48,13 @@
                     }else{
                         //密碼錯誤
                         alert("密碼錯誤");
+                        reset();
                     }
                 })
             }else{
                 // 無此帳號
                 alert("查無帳號");
+                reset();
             }
         })
     }
