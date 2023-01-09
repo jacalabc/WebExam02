@@ -54,8 +54,10 @@
                         alert("帳號重複");
                     }else{
                         // 不重複
-                        新增帳號
-                        alert("註冊完成，歡迎加入");
+                        $.post("./api/reg.php",user,()=>{
+                            alert("註冊完成，歡迎加入");
+                            reset();
+                        })
                     }
                 })
             }else{
