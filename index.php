@@ -62,11 +62,13 @@
 					</span>
                     <div class="">
 						<?php
+							// $do=$_GET['do']??'home_dreamweaver';
 							$do=$_GET['do']??'home';
 							$file="./front/".$do.".php";
 							if(file_exists($file)){
 								include $file;
 							}else{
+								// include "./front/home_dreamweaver.php";
 								include "./front/home.php";
 							}
 
