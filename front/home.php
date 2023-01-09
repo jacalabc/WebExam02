@@ -3,16 +3,22 @@
         padding: 3px;
         border: 1px solid gray;
         margin-left: -1px;
+        cursor: pointer;
+        background-color: #eee;
     }
-
+    .active{
+        background-color: white;
+        border-bottom: white;
+    }
     .box {
         border: 1px solid gray;
         margin-top: -1px;
+        margin-left: -1px;
         width: 95%;
     }
 </style>
 <div style="display:flex;">
-    <div class="tab">健康新知</div>
+    <div class="tab active">健康新知</div>
     <div class="tab">菸害防制</div>
     <div class="tab">癌症防治</div>
     <div class="tab">慢性病防治</div>
@@ -120,6 +126,8 @@
 
     $('.tab').on("click", (e) => {
         console.log($(e.target).index(), $(e.target).text());
+        $(".tab").removeClass('active');
+        $(e.target).addClass('active');
         $(".box").hide();
         $(".box").eq($(e.target).index()).show();
     })
