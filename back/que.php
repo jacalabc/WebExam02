@@ -8,7 +8,7 @@
         <div class="options">
             <div>
                 <label>選項</label>
-                <input type="text" name="option" id="">
+                <input type="text" name="option[]" id="">
             </div>
         </div>
         <input type="submit" value="新增">
@@ -20,7 +20,7 @@
     function moreOpt(){
         let opt=`<div>
                     <label>選項</label>
-                    <input type="text" name="option" id="">
+                    <input type="text" name="option[]" id="">
                 </div>`;
 
         $(".options").append(opt);
