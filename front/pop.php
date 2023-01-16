@@ -35,6 +35,7 @@
     $start=($now-1)*$div;
 
     $rows=$News->all(['sh'=>1]," order by `good` desc limit $start,$div");
+    
     foreach($rows as $row){
 
     ?>
@@ -49,7 +50,31 @@
                     ?>
                 </div>
             </td>
-            <td></td>
+            <td>
+                <span class="num"><?=$Log->count(['news'=>$row['id']]);?></span>
+                個人說
+                <img src="./icon/02B03.jpg" style="width:20px;height:20px">
+                <?php
+                    /**
+                     * 1.點擊後要紀錄使用者對那一篇文章點了讚或收回讚
+                     * 2.點擊後要根據讚或收回讚去改變文章的good欄位
+                     */
+
+                    if(isset($_SESSION['login'])){
+                        if($Log->count(['news'=>$row['id'],'user'=>$_SESSION['login']])>0){
+                            echo "<a href='#' class='goods' data-user='{$_SESSION['login']}' data-news='{$row['id']}'>";
+                            echo "收回讚";
+                            echo "</a>";
+
+                        }else{
+                            echo "<a href='#' class='goods' data-user='{$_SESSION['login']}' data-news='{$row['id']}'>";
+                            echo "讚";
+                            echo "</a>";
+                        }
+                    }
+                ?>
+
+            </td>
         </tr>
     <?php
     }
@@ -97,4 +122,6 @@
         }
 
     )
+
+
 </script>
