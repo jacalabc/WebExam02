@@ -1,3 +1,13 @@
+<style>
+    .full {
+        display: none;
+    }
+
+    .news-title {
+        cursor: pointer;
+        background-color: #eee;
+    }
+</style>
 <fieldset>
     <legend>目前位置 : 首頁 > 最新文章區</legend>
     <table>
@@ -18,8 +28,11 @@
 
         ?>
             <tr>
-                <td><?= $row['title']; ?></td>
-                <td><?= mb_substr($row['text'], 0, 20); ?>...</td>
+                <td class="news-title"><?= $row['title']; ?></td>
+                <td>
+                    <div class="short"><?= mb_substr($row['text'], 0, 20); ?>...</div>
+                    <div class="full"><?=nl2br($row['text']) ; ?></div>
+                </td>
                 <td></td>
             </tr>
         <?php
@@ -44,3 +57,10 @@
     }
     ?>
 </fieldset>
+<script>
+    $(".news-title").on("click", function() {
+        $(this).next().children('.short,.full').toggle();
+        // $(this).next().children('.short').toggle();
+        // $(this).next().children('.full').toggle();
+    })
+</script>
